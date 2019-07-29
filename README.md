@@ -135,5 +135,74 @@ This is a very simple change that makes conditional statements a bit more readab
 You can specify an object of a type with public fields equal to certain objects. This makes conditional operations on large amount of field equivalence statements easier to read.
 
 
+## Asynchronous Streams
+
+This change provides the capability to enumerate over asynchronous objects. 
+
+This is done by two new public interfaces, IAsyncEnumerable\<out T> and IAsyncEnumerator\<out T>. 
+
+So we can make a producer/consumer architecture using something similar to this: 
+
+    public async IAsyncEnumerable<HttpData> HttpRequests(){
+		while(m_running){
+			yield return server.GetRequest();
+		}
+	}
+
+At any point we could then call this HttpRequest as a Enumerable Type. To iterate through these data types 
+
+    await foreach(var data in HttpRequests()){
+		var response = ProcessHttp(data);
+		SendResponse(response);
+	} 
+
+Thus you could define a field in an IServer Interface which would contain all HTTP request that will every occur while the server is running.
+
+This addition is meant to provide support for the "pull" model of producer/consumer architecture. Which, as opposed to the "push" model, is better in scenarios where the producers are dealing with more data than the consumers are consuming. 
+
+## Ranges and Indices
+
+C# 8.0 Adds native support for ranges and "end of sequence" access of sequences and arrays. 
+
+The '^' operator is currently being defined as [^n] accesses the n element from the end of the array. ^1 is the last element of the array, ^2 is the second value from the end, ^0 is interestingly equivalent to Array.Length().
+
+For example: 
+
+    var arr = new int[] {1,2,3,4,5,6,7,8,9,10}; 
+    var a = arr[^1]; // a = 10
+    var b = arr[^2]; // b = 9
+	var c = arr[^0]; // index out of bound exception.
+	
+Like Haskell or Prolog, C# 8.0 also include the ability to access/create sub arrays via ranges. 
+
+    var subarr = arr[0..2] // subarr = {1,2}
+	var subarr2 = arr[0..^1] // subarr2 = {1,2,3,4,5,6,7,8,9} 
+
+
+# Small Additions
+
+### Using Declaration:
+
+The Using Interface has been cleaned up in a way that will might make you actually use it now. 
+
+It has been recommended for a long time that to properly manage memory in C#, the using method should be used. This requires the stated variable to implement the IDisposable interface. 
+
+Before: 
+
+    using(var file = new System.File(fileName)){
+		...
+	}
+
+Now: 
+
+    using var file = new System.File(fileName); 
+
+<br>
+You can use the "using" keyword before a type definition to specify that it will be disposed off with IDisposable.Dispose() at the end of the variables scope.
+
+### Static Local Function:
+
+Local functions in C# are possible 
+
 
 
