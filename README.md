@@ -181,6 +181,27 @@ Like Haskell or Prolog, C# 8.0 also include the ability to access/create sub arr
 
 # Small Additions
 
+### Default Interface Members
+
+This is a slightly contentious change. 
+
+C# 8.0 allows you to define default behavior for Interface functions. Suppose you have an interface that is implemented by tons of classes, something like an IEntity interface. In C# 7.0, If we wanted to add a new method to IEntity everything which inherits from it would have to define that method. 
+
+    public Interface IEntity
+    {
+	    string Name {get;}
+	    EntityCategory {get;}
+	     
+	    ... 
+
+	    //New Method
+	    string ReserveType(){
+		return Name + ":" + EntityCategory.ToString();
+            } 	
+    }
+
+This allows us to extend interfaces to add new functionality without breaking any current functionality, but some argue that this addition could do more harm than good, as its implementation may lead to poor coding practices. 
+
 ### Using Declaration:
 
 The Using Interface has been cleaned up in a way that will might make you actually use it now. 
