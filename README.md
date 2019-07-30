@@ -16,7 +16,9 @@ To compile C# 8.0 a version of the .NET framework 3.0 or greater is required, 3.
 
 This is pretty much the only reason anyone cares about C# 8.0,  so at least pay attention to this. 
 
-This addition allows for code to be explicit in stating "what can and can't be null". consider the two following pieces of code.
+This addition allows for code to be explicit in stating "what can and can't be null". 
+
+Consider the two following pieces of code.
 
 	public interface INullableClient{
 		IServer? ServerConnection;
