@@ -196,7 +196,7 @@ Now:
 <br>
 You can use the "using" keyword before a type definition to specify that it will be disposed off with IDisposable.Dispose() at the end of the variables scope.
 
-## Performance Enhancers
+## Performance Enhancements:
 
 ### Static Local Functions: 
 
@@ -233,7 +233,7 @@ Which allows for using statements with these structs.
 	using var data = new dataPoint(x,y) ...
 	
 
-## Asynchronous Streams
+# Asynchronous Streams
 
 This change provides the capability to enumerate over asynchronous objects. 
 
