@@ -119,7 +119,7 @@ Syntax Differences:
 - The 'case' keyword is not needed.
 - The '=>' symbol is used to specify the expressions return value.
 - Commas at the end of each case functionally replace the 'break' keyword.
-- 'default' key word is not used.
+- The 'default' keyword is not used.
 
 
 ### Property Patterns: 
