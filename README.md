@@ -135,31 +135,6 @@ This is a very simple change that makes conditional statements a bit more readab
 You can specify an object of a type with public fields equal to certain objects. This makes conditional operations on large amount of field equivalence statements easier to read.
 
 
-## Asynchronous Streams
-
-This change provides the capability to enumerate over asynchronous objects. 
-
-This is done by two new public interfaces, IAsyncEnumerable\<out T> and IAsyncEnumerator\<out T>. 
-
-So we can make a producer/consumer architecture using something similar to this: 
-
-    public async IAsyncEnumerable<HttpData> HttpRequests(){
-		while(m_running){
-			yield return server.GetRequest();
-		}
-	}
-
-At any point we could then call this HttpRequest as a Enumerable Type. To iterate through these data types 
-
-    await foreach(var data in HttpRequests()){
-		var response = ProcessHttp(data);
-		SendResponse(response);
-	} 
-
-Thus you could define a field in an IServer Interface which would contain all HTTP request that will every occur while the server is running.
-
-This addition is meant to provide support for the "pull" model of producer/consumer architecture. Which, as opposed to the "push" model, is better in scenarios where the producers are dealing with more data than the consumers are consuming. 
-
 ## Ranges and Indices
 
 C# 8.0 Adds native support for ranges and "end of sequence" access of sequences and arrays. 
@@ -221,9 +196,65 @@ Now:
 <br>
 You can use the "using" keyword before a type definition to specify that it will be disposed off with IDisposable.Dispose() at the end of the variables scope.
 
-### Static Local Function:
+## Performance Enhancers
 
-Local functions in C# are possible 
+### Static Local Functions: 
 
+Local functions have been possible for sometime in C#, however the implmentation that is used has performanced costs with the call stack for the function to make the local variables accessible to the internal function. 
 
+C# 8.0 adds the ability to have more data efficient local functions by making use of the static keyword.
+
+	public void OutputData(){
+		
+		foreach(dataPoint in localData)
+			printData(dataPoint);
+		
+		static void printData(Datapoint dp){
+			//print data...
+		}
+	}
+
+### Disposable Refstructs 
+
+In the latest version of C# 7.0 for data efficiency purposes the 'ref struct' data structure was used which forced the structure to be stored in continous memory upon the call stack. One issue that these structs had was releasing their data from the call stack when the structs became too complex. 
+
+In C# 8.0 all Refstructs implcitly implement the Dispoable interface so you can better define how the structs themselves are deconstructed. 
+
+	ref struct dataPoint{
+		IntPtr x, y;
+		
+		public void Dispose(){
+			//
+		}
+	}
+
+Which allows for using statements with these structs.
+	
+	using var data = new dataPoint(x,y) ...
+	
+
+## Asynchronous Streams
+
+This change provides the capability to enumerate over asynchronous objects. 
+
+This is done by two new public interfaces, IAsyncEnumerable\<out T> and IAsyncEnumerator\<out T>. 
+
+So we can make a producer/consumer architecture using something similar to this: 
+
+    public async IAsyncEnumerable<HttpData> HttpRequests(){
+		while(m_running){
+			yield return server.GetRequest();
+		}
+	}
+
+At any point we could then call this HttpRequest as a Enumerable Type. To iterate through these data types 
+
+    await foreach(var data in HttpRequests()){
+		var response = ProcessHttp(data);
+		SendResponse(response);
+	} 
+
+Thus you could define a field in an IServer Interface which would contain all HTTP request that will every occur while the server is running.
+
+This addition is meant to provide support for the "pull" model of producer/consumer architecture. Which, as opposed to the "push" model, is better in scenarios where the producers are dealing with more data than the consumers are consuming. 
 
