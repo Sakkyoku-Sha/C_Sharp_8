@@ -181,9 +181,9 @@ This allows us to extend interfaces to add new functionality without breaking an
 
 ### Using Declaration:
 
-The Using Interface has been cleaned up in a way that will might make you actually use it now. 
+The Using Interface has been cleaned up in a way that might make you actually want to use it now. 
 
-It has been recommended for a long time that to properly manage memory in C#, the using method should be used. This requires the stated variable to implement the IDisposable interface. 
+It has been recommended for a long time that to properly manage memory in C#, the disposable/using pattern should be used. This requires the stated variable to implement the IDisposable interface. 
 
 Before: 
 
