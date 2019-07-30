@@ -8,14 +8,14 @@ namespace C8Examples
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static async Task Main()
         {
-            var server = new Server(); 
             var client = new Client();
+            //var cm = new ClientManager();
 
             await (client as IClient).DumpDataAsync();
 
-            
+         
         }
     }
 }

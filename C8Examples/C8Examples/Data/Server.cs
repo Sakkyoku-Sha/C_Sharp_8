@@ -6,7 +6,7 @@ namespace C8Examples.Data
 {
     class Server : IServer
     {
-        public IClientManager ClientManager => throw new NotImplementedException();
+        public IClientManager ClientManager => new ClientManager();
 
         public ServerState ServerState { get; private set; }
        

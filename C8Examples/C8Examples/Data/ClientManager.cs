@@ -6,11 +6,11 @@ namespace C8Examples.Data
 {
     class ClientManager : IClientManager
     {
-        public ISet<IClient> Clients => throw new NotImplementedException();
+        public ISet<IClient> Clients => new HashSet<IClient>();
 
         public void ConnectClient(IClient client)
         {
-            if ((client is IClient { ClientType: ClientType.Admin })) 
+            if ((client is IClient { ClientType: ClientType.Admin })) //Decompositional pattern
                 AdminConnect();
             else
                 StandardConnect();
@@ -19,14 +19,14 @@ namespace C8Examples.Data
 
         private void AdminConnect()
         {
-            ///
+            ///Connect for an admin
         }
 
         private void StandardConnect()
         {
-            ///
+            ///Connect for the standard user.
         }
 
-           
+        public int getNum() => 10;
     }
 }

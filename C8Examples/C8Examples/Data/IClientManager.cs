@@ -6,6 +6,8 @@ namespace C8Examples.Data
     {
         ISet<IClient> Clients { get; }
 
-        public void ConnectClient(IClient client); 
+        public void ConnectClient(IClient client);
+
+        public int getNum() => 5;
     }
 }

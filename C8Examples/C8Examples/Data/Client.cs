@@ -18,7 +18,7 @@ namespace C8Examples.Data
             Connection = new Server(); //Must have a instantiation in the constructor for the class for the object to be 
         }
 
-        public DateTime? LastConnectionDate => throw new NotImplementedException();
+        public DateTime? LastConnectionDate => new DateTime();
 
         public void SwapServer(IServer? server)
         {
