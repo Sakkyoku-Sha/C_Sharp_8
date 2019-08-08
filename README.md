@@ -260,3 +260,17 @@ Thus you could define a field in an IServer Interface which would contain all HT
 
 This addition is meant to provide support for the "pull" model of producer/consumer architecture. Which, as opposed to the "push" model, is better in scenarios where the producers are dealing with more data than the consumers are consuming. 
 
+## Further Readings: 
+
+Official C# 8.0 Release Notes : https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8
+
+Async Streams Tutorial: https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/generate-consume-asynchronous-stream
+
+Tasks and Async Introduction : https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/
+
+Proper use of nullable reference types: https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/nullable-reference-types
+
+Discussion of Default Interface Methods: https://www.infoq.com/articles/default-interface-methods-cs8/
+
+
+
