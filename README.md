@@ -10,7 +10,7 @@ C# 8.0 will only be supported by versions of .NET Core 3.0 or greater.
 
 As of July 2019 IDE support for C# 8.0 is only available in the preview version builds of Visual Studio 2019. It can be found here : https://visualstudio.microsoft.com/vs/preview/. 
 
-To compile C# 8.0 a version of the .NET framework 3.0 or greater is required, 3.0 can be found here : https://dotnet.microsoft.com/download/dotnet-core/3.0
+To compile C# 8.0 a version of .NET Core 3.0 or greater is required, 3.0 can be found here : https://dotnet.microsoft.com/download/dotnet-core/3.0
 
 # Everything is Nullable! 
 
